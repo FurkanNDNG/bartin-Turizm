@@ -1,0 +1,81 @@
+/* Ortak görünüm: Üç HTML dosyası bu dosyayı kullanır. Renkler: mavi, yeşil, beyaz */
+:root {
+  --mavi: #0b5f8a;
+  --yesil: #0a7a63;
+  --acik-yesil: #bdf5e6;
+  --zemin: #f2faf9;
+  --beyaz: #ffffff;
+  --yazi: #0f3a4a;
+  --soluk-yazi: #3f6270;
+  --cizgi: #cfe5e3;
+  --gecis: 0.25s ease;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: Arial, sans-serif; color: var(--yazi); background: var(--zemin); line-height: 1.65; text-align: center; }
+
+header { background: linear-gradient(90deg, var(--mavi), var(--yesil)); color: var(--beyaz); padding: clamp(16px, 3vw, 24px) max(6vw, 20px); }
+.brand { font-weight: bold; font-size: clamp(22px, 3vw, 28px); }
+nav { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 3vw, 24px); margin-top: 12px; }
+nav a { color: #e6f7f3; text-decoration: none; padding: 4px 0; border-bottom: 3px solid transparent; transition: color var(--gecis), border-color var(--gecis); }
+nav a:hover { color: var(--beyaz); border-bottom-color: rgba(255, 255, 255, 0.55); }
+nav a[aria-current="page"] { color: var(--beyaz); border-bottom-color: var(--acik-yesil); }
+nav a:focus-visible { outline: 3px solid var(--beyaz); outline-offset: 5px; }
+
+a { color: var(--mavi); }
+a:focus-visible { outline: 3px solid var(--mavi); outline-offset: 5px; }
+main { max-width: 1100px; margin: 0 auto; padding: clamp(28px, 5vw, 48px) clamp(16px, 3vw, 24px); min-height: 65vh; }
+.eyebrow { color: var(--yesil); font-weight: bold; letter-spacing: 2px; font-size: 14px; }
+h1 { font-size: clamp(32px, 5vw, 60px); line-height: 1.12; max-width: 850px; margin: 20px auto; color: var(--mavi); }
+.intro { font-size: clamp(17px, 2vw, 21px); max-width: 730px; margin-left: auto; margin-right: auto; color: var(--soluk-yazi); }
+.button { display: inline-block; margin: 16px 0 32px; padding: 13px 24px; background: var(--yesil); color: var(--beyaz); border-radius: 6px; text-decoration: none; font-weight: bold; transition: background var(--gecis), transform var(--gecis), box-shadow var(--gecis); }
+.button:hover { background: var(--mavi); transform: translateY(-2px); box-shadow: 0 6px 14px rgba(11, 95, 138, 0.25); }
+.button:focus-visible { outline: 3px solid var(--mavi); outline-offset: 4px; }
+
+/* Kartlar: ortalanır, son satırdaki kartlar da ortada durur */
+.grid { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(16px, 2.5vw, 22px); margin-top: 32px; }
+article { flex: 1 1 270px; max-width: 360px; background: var(--beyaz); color: var(--yazi); border-top: 4px solid var(--yesil); border-bottom: 1px solid var(--cizgi); padding: clamp(18px, 3vw, 25px); border-radius: 6px; transition: background-color var(--gecis), color var(--gecis), box-shadow var(--gecis); }
+article h2 { margin: 10px 0; font-size: clamp(20px, 2.5vw, 23px); color: var(--mavi); transition: color var(--gecis); }
+.meta { font-size: 14px; color: var(--yesil); font-weight: bold; transition: color var(--gecis); }
+
+/* Üzerine gelince kart beyazdan hafif griye döner */
+article:hover { background-color: #e9edef; box-shadow: 0 8px 18px rgba(15, 58, 74, 0.12); }
+
+.note { max-width: 720px; margin: 30px auto 0; padding: 18px 22px; border-top: 4px solid var(--mavi); background: #e3f4f1; border-radius: 6px; }
+footer { border-top: 1px solid var(--cizgi); background: var(--beyaz); padding: 24px 6vw; color: var(--soluk-yazi); font-size: 14px; }
+
+
+/* Rota sayfası: uzun kartlar alt alta */
+.liste { display: flex; flex-direction: column; gap: 22px; margin-top: 32px; }
+article.yer { display: flex; align-items: center; gap: clamp(16px, 3vw, 28px); max-width: none; flex: none; width: 100%; text-align: center; }
+article.yer img { width: clamp(150px, 26%, 260px); aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; flex-shrink: 0; background: #cfe5e3; }
+.yer-metin { flex: 1; }
+.yer-metin p { margin: 6px 0; }
+
+/* Yer sayfaları: fotoğraf bir sağda, bir solda */
+.detay { max-width: 1000px; }
+.parca { display: flex; align-items: center; gap: clamp(20px, 4vw, 40px); margin: clamp(28px, 5vw, 48px) 0; }
+.parca.sag { flex-direction: row-reverse; }
+.parca figure { flex: 0 1 46%; margin: 0; }
+.parca img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; box-shadow: 0 8px 20px rgba(15, 58, 74, 0.15); background: #cfe5e3; }
+.parca figcaption { font-size: 13px; color: var(--soluk-yazi); margin-top: 8px; }
+.parca .metin { flex: 1; }
+.parca h2 { color: var(--mavi); margin: 0 0 8px; }
+
+@media (max-width: 700px) {
+  article.yer { flex-direction: column; }
+  article.yer img { width: 100%; }
+  .parca, .parca.sag { flex-direction: column; }
+  .parca figure { flex: none; width: 100%; }
+}
+
+/* Aşağı kaydırınca öğeler alttan süzülerek gelir (script.js bu sınıfları ekler) */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease, background-color var(--gecis), color var(--gecis), box-shadow var(--gecis); }
+.reveal.gorunur { opacity: 1; transform: none; }
+
+/* Hareketten rahatsız olan kullanıcılar için animasyonları kapat */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
